@@ -26,15 +26,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Define a proxy for the Vite development server
-const viteProxy = createProxyMiddleware("/client", {
-  target: "http://localhost:5173",
-  changeOrigin: true,
-});
-app.use(viteProxy);
+// const viteProxy = createProxyMiddleware("/client", {
+//   target: "http://localhost:5173",
+//   changeOrigin: true,
+// });
+// app.use(viteProxy);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
-});
+// app.listen(3000, () => {
+//   console.log("Server is running on port 3000!");
+// });
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
