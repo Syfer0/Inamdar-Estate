@@ -32,9 +32,9 @@ app.use(cookieParser());
 // });
 // app.use(viteProxy);
 
-// app.listen(3000, () => {
-//   console.log("Server is running on port 3000!");
-// });
+app.listen(3000, () => {
+  console.log("Server is running on port 3000!");
+});
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
