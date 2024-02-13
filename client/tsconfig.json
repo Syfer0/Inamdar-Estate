@@ -2,11 +2,13 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "esnext",
-    "strict": false,
+    "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-    // Add other options as needed
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "outDir": "./build", // Output directory for compiled files
+    "rootDir": "./src" // Root directory of source files
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
