@@ -1,4 +1,6 @@
-# React + Vite
+# CMD
+
+find . -type f -name '\*.jsx' -exec bash -c 'mv "$1" "${1%.jsx}.tsx"' \_ {} \;
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
