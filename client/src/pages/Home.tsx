@@ -5,7 +5,14 @@ import { Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/css/bundle";
 import ListingItem from "../components/ListingItem";
+interface Listing {
+  _id: string;
+  imageUrls: string[];
+ 
+}
 
+ 
+ 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
@@ -40,7 +47,7 @@ export default function Home() {
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
-        log(error);
+        console.log(error);
       }
     };
     fetchOfferListings();
@@ -67,7 +74,6 @@ export default function Home() {
           Let's get started...
         </Link>
       </div>
-
       {/* swiper */}
       <Swiper navigation>
         {offerListings &&

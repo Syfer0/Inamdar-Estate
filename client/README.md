@@ -5,5 +5,5 @@
 3.implement graphql
 
 Details
-email - Testexample@gmail.com
-password - test@123
+email - Test2@example.com
+password - test@1234
