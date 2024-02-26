@@ -13,7 +13,14 @@ export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only update your own account!'));
   try {
+    // Check if the request body contains the password field
     if (req.body.password) {
+      // If the password is provided, validate it
+      // For example, check if it meets certain criteria such as minimum length
+      if (req.body.password.length < 6) {
+        return next(errorHandler(400, 'Password must be at least 6 characters long'));
+      }
+      // If the password meets the criteria, hash it
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
 
@@ -23,12 +30,21 @@ export const updateUser = async (req, res, next) => {
         $set: {
           username: req.body.username,
           email: req.body.email,
-          password: req.body.password,
+          password: req.body.password, // Update the password if provided
           avatar: req.body.avatar,
         },
       },
       { new: true }
     );
+
+    const { password, ...rest } = updatedUser._doc;
+
+    res.status(200).json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
     const { password, ...rest } = updatedUser._doc;
 
