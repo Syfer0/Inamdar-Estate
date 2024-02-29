@@ -5,17 +5,18 @@ import { Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/css/bundle";
 import ListingItem from "../components/ListingItem";
-interface listing {
+
+interface Listing {
   _id: string;
   imageUrls: string[];
 }
 
 export default function Home() {
-  const [offerListings, setOfferListings] = useState([]);
-  const [saleListings, setSaleListings] = useState([]);
-  const [rentListings, setRentListings] = useState([]);
+  const [offerListings, setOfferListings] = useState<Listing[]>([]);
+  const [saleListings, setSaleListings] = useState<Listing[]>([]);
+  const [rentListings, setRentListings] = useState<Listing[]>([]);
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
+
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
@@ -49,6 +50,7 @@ export default function Home() {
     };
     fetchOfferListings();
   }, []);
+
   return (
     <div>
       {/* top */}
@@ -73,26 +75,23 @@ export default function Home() {
       </div>
       {/* swiper */}
       <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
-          offerListings.map((listing) => (
-            <SwiperSlide>
-              <div
-                style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                  backgroundSize: "cover",
-                }}
-                className="h-[500px]"
-                key={listing._id}
-              ></div>
-            </SwiperSlide>
-          ))}
+        {offerListings.map((listing) => (
+          <SwiperSlide key={listing._id}>
+            <div
+              style={{
+                background: `url(${listing.imageUrls[0]}) center no-repeat`,
+                backgroundSize: "cover",
+              }}
+              className="h-[500px]"
+            ></div>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
-      {/* listing results for offer, sale and rent */}
+      {/* listing results for offer, sale, and rent */}
 
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10">
-        {offerListings && offerListings.length > 0 && (
+        {offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
               <h2 className="text-2xl font-semibold text-slate-600">
@@ -112,7 +111,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        {rentListings && rentListings.length > 0 && (
+        {rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
               <h2 className="text-2xl font-semibold text-slate-600">
@@ -132,7 +131,7 @@ export default function Home() {
             </div>
           </div>
         )}
-        {saleListings && saleListings.length > 0 && (
+        {saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
               <h2 className="text-2xl font-semibold text-slate-600">
