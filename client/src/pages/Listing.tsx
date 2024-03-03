@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper";
+import SwiperCore from "swiper";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store"; // Import RootState from your Redux store
+import { Navigation } from "swiper/modules";
+import "swiper/css/bundle"; // Import RootState from your Redux store
 import {
   FaBath,
   FaBed,
