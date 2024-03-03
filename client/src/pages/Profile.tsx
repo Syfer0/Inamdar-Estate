@@ -81,6 +81,15 @@ export default function Profile() {
       return;
     }
 
+    // Add client-side password validation logic here
+    if (formData.password.length < 6) {
+      setUpdateSuccess(false); // Reset update success state
+      dispatch(
+        updateUserFailure("Password must be at least 6 characters long")
+      );
+      return;
+    }
+
     try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
