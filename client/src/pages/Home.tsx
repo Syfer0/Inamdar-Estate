@@ -15,8 +15,6 @@ export default function Home() {
   const [offerListings, setOfferListings] = useState<Listing[]>([]);
   const [saleListings, setSaleListings] = useState<Listing[]>([]);
   const [rentListings, setRentListings] = useState<Listing[]>([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
   SwiperCore.use([Navigation]);
 
   useEffect(() => {
@@ -30,7 +28,6 @@ export default function Home() {
         console.log(error);
       }
     };
-
     const fetchRentListings = async () => {
       try {
         const res = await fetch("/api/listing/get?type=rent&limit=4");
@@ -51,37 +48,19 @@ export default function Home() {
         console.log(error);
       }
     };
-
     fetchOfferListings();
   }, []);
-
-  useEffect(() => {
-    // Set background color based on dark mode state
-    document.body.style.backgroundColor = isDarkMode ? "black" : "white";
-  }, [isDarkMode]);
 
   return (
     <div>
       {/* top */}
-      <div
-        className={`flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto ${
-          isDarkMode ? "text-white" : "text-black"
-        }`}
-      >
-        <h1
-          className={`font-bold text-3xl lg:text-6xl ${
-            isDarkMode ? "text-red-500" : "text-slate-700"
-          }`}
-        >
+      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
+        <h1 className="text-slate-700 font-bold text-3xl lg:text-6xl">
           Find your next <span className="text-slate-500">perfect</span>
           <br />
           place with ease
         </h1>
-        <div
-          className={`text-gray-400 text-xs sm:text-sm dark:text-red-900 ${
-            isDarkMode ? "text-gray-300" : ""
-          }`}
-        >
+        <div className="text-gray-400 text-xs sm:text-sm">
           Inamdar Estate is the best place to find your next perfect place to
           live.
           <br />
@@ -89,9 +68,7 @@ export default function Home() {
         </div>
         <Link
           to={"/search"}
-          className={`text-xs sm:text-sm text-blue-800 font-bold hover:underline ${
-            isDarkMode ? "text-gray-300" : ""
-          }`}
+          className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
         >
           Let's get started...
         </Link>
@@ -117,17 +94,11 @@ export default function Home() {
         {offerListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2
-                className={`text-2xl font-semibold ${
-                  isDarkMode ? "text-gray-300" : "text-slate-600"
-                }`}
-              >
+              <h2 className="text-2xl font-semibold text-slate-600">
                 Recent offers
               </h2>
               <Link
-                className={`text-sm text-blue-800 hover:underline ${
-                  isDarkMode ? "text-gray-300 hover:text-gray-200" : ""
-                }`}
+                className="text-sm text-blue-800 hover:underline"
                 to={"/search?offer=true"}
               >
                 Show more offers
@@ -143,17 +114,11 @@ export default function Home() {
         {rentListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2
-                className={`text-2xl font-semibold ${
-                  isDarkMode ? "text-gray-300" : "text-slate-600"
-                }`}
-              >
+              <h2 className="text-2xl font-semibold text-slate-600">
                 Recent places for rent
               </h2>
               <Link
-                className={`text-sm text-blue-800 hover:underline ${
-                  isDarkMode ? "text-gray-300 hover:text-gray-200" : ""
-                }`}
+                className="text-sm text-blue-800 hover:underline"
                 to={"/search?type=rent"}
               >
                 Show more places for rent
@@ -169,17 +134,11 @@ export default function Home() {
         {saleListings.length > 0 && (
           <div className="">
             <div className="my-3">
-              <h2
-                className={`text-2xl font-semibold ${
-                  isDarkMode ? "text-gray-300" : "text-slate-600"
-                }`}
-              >
+              <h2 className="text-2xl font-semibold text-slate-600">
                 Recent places for sale
               </h2>
               <Link
-                className={`text-sm text-blue-800 hover:underline ${
-                  isDarkMode ? "text-gray-300 hover:text-gray-200" : ""
-                }`}
+                className="text-sm text-blue-800 hover:underline"
                 to={"/search?type=sale"}
               >
                 Show more places for sale
