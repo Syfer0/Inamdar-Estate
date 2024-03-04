@@ -2,11 +2,13 @@ import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
-export default function Header() {
+export default function Header({ toggleDarkMode, isDarkMode }) {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,18 +24,25 @@ export default function Header() {
       setSearchTerm(searchTermFromUrl);
     }
   }, [location.search]);
+
   return (
-    <header className="bg-slate-200 shadow-md">
+    <header className={`bg-${isDarkMode ? "gray-800" : "slate-200"} shadow-md`}>
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
-            <span className="text-slate-500">Inamdar</span>
-            <span className="text-slate-700">Estate</span>
+            <span className={`text-${isDarkMode ? "gray-500" : "slate-500"}`}>
+              Inamdar
+            </span>
+            <span className={`text-${isDarkMode ? "gray-700" : "slate-700"}`}>
+              Estate
+            </span>
           </h1>
         </Link>
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg flex items-center"
+          className={`bg-${
+            isDarkMode ? "gray-100" : "slate-100"
+          } p-3 rounded-lg flex items-center`}
         >
           <input
             type="text"
@@ -43,7 +52,9 @@ export default function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>
-            <FaSearch className="text-slate-600" />
+            <FaSearch
+              className={`text-${isDarkMode ? "gray-600" : "slate-600"}`}
+            />
           </button>
         </form>
         <ul className="flex gap-4">
@@ -68,6 +79,9 @@ export default function Header() {
               <li className=" text-slate-700 hover:underline"> Sign in</li>
             )}
           </Link>
+          <button onClick={toggleDarkMode}>
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
         </ul>
       </div>
     </header>
