@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: rgb(241, 245, 241);
+body {
+  background-color: rgb(241, 245, 241); /* Light mode background color */
+}
+
+.dark-mode {
+  background-color: #1a202c; /* Dark mode background color */
+}
+
+* {
+  @apply transition-colors duration-200;
+}
+
+* {
+  @apply dark:bg-neutral-900; /* Apply dark background color to all elements */
+  @apply dark:text-neutral-300;
 }
