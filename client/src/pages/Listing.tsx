@@ -68,7 +68,7 @@ export default function Home() {
         </div>
         <Link
           to={"/search"}
-          className="text-xs sm:text-sm text-blue-800 font-bold hover:underline"
+          className="text-xs sm:text-sm text-blue-800 dark:text-blue-500  font-bold hover:underline"
         >
           Let's get started...
         </Link>
@@ -98,7 +98,7 @@ export default function Home() {
                 Recent offers
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-800 dark:text-blue-500 hover:underline"
                 to={"/search?offer=true"}
               >
                 Show more offers
@@ -118,7 +118,7 @@ export default function Home() {
                 Recent places for rent
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-800 dark:text-blue-500 hover:underline"
                 to={"/search?type=rent"}
               >
                 Show more places for rent
@@ -138,7 +138,7 @@ export default function Home() {
                 Recent places for sale
               </h2>
               <Link
-                className="text-sm text-blue-800 hover:underline"
+                className="text-sm text-blue-800 dark:text-blue-500 hover:underline"
                 to={"/search?type=sale"}
               >
                 Show more places for sale

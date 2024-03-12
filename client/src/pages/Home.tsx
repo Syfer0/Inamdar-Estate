@@ -106,7 +106,11 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap gap-4">
               {offerListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+                <ListingItem
+                  listing={listing}
+                  key={listing._id}
+                  withGrayBackground={true}
+                />
               ))}
             </div>
           </div>

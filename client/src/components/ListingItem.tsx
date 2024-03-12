@@ -1,9 +1,23 @@
 import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
+import { Listing } from "../pages/Listing";
+interface ListingItemProps {
+  listing: Listing;
+  withGrayBackground: boolean; // Explicitly define the type as boolean
+}
 
-export default function ListingItem({ listing }) {
+export default function ListingItem({
+  listing,
+  withGrayBackground,
+}: ListingItemProps) {
   return (
-    <div className="bg-white dark:bg-neutral-800 shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
+    <div
+      className={`${
+        withGrayBackground
+          ? "bg-gray-100 dark:bg-zinc-700"
+          : "bg-white dark:bg-zinc-700"
+      } shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]`}
+    >
       <Link to={`/listing/${listing._id}`}>
         <img
           src={
@@ -13,7 +27,7 @@ export default function ListingItem({ listing }) {
           alt="listing cover"
           className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
         />
-        <div className="p-3 flex flex-col gap-2 w-full">
+        <div className="p-3 flex flex-col gap-2 w-full ">
           <p className="truncate text-lg font-semibold text-slate-700 dark:text-white">
             {listing.name}
           </p>
