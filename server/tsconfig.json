@@ -2,8 +2,10 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "esnext",
-    "strict": false,
+    "strict": true,
     "skipLibCheck": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "outDir": "dist"
   }
 }
