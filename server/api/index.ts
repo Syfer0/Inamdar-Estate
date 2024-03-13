@@ -14,7 +14,8 @@ mongoose
   .then(() => {
     console.log('Connected to MongoDB!');
   })
-  .catch((err) => {
+  .catch((err: any) => {
+    // Specify the type of 'err'
     console.log(err);
   });
 
@@ -40,19 +41,27 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
-// Server the index.html from the Vite development server
+// Serve the index.html from the Vite development server
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
-  return res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
-});
+app.use(
+  (
+    err: any,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+  ) => {
+    // Specify the type of 'err'
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    return res.status(statusCode).json({
+      success: false,
+      statusCode,
+      message,
+    });
+  },
+);
