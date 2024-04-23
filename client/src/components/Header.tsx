@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Togglebtn from "./Themebtn";
-
+import { IoChatboxEllipses } from "react-icons/io5";
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
@@ -70,6 +70,11 @@ export default function Header() {
             )}
           </Link>
           <Togglebtn />
+          <Link to="/chat">
+            <li className="text-slate-700 hover:underline">
+              <IoChatboxEllipses className="h-7 w-7 " />
+            </li>
+          </Link>
         </ul>
       </div>
     </header>
