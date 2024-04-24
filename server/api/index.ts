@@ -7,10 +7,17 @@ import listingRouter from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import { NextFunction, Request, Response } from "express";
 dotenv.config();
-
+const { Server } = require("socket.io");
+const io = new Server(Server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  },
+});
 mongoose
-  .connect(process.env.MONGO)
+  .connect(process.env.MONGO ?? "defaultMongoConnection")
   .then(() => {
     console.log("Connected to MongoDB!");
   })
@@ -47,7 +54,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   return res.status(statusCode).json({
