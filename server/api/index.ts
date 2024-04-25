@@ -1,21 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRouter from "./routes/user.route.js";
-import authRouter from "./routes/auth.route.js";
-import listingRouter from "./routes/listing.route.js";
+import userRouter from "./routes/user.route";
+import authRouter from "./routes/auth.route";
+import listingRouter from "./routes/listing.route";
 import cookieParser from "cookie-parser";
 import path from "path";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { NextFunction, Request, Response } from "express";
+
 dotenv.config();
-const { Server } = require("socket.io");
-const io = new Server(Server, {
-  cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-  },
-});
+
 mongoose
   .connect(process.env.MONGO ?? "defaultMongoConnection")
   .then(() => {
@@ -25,10 +20,8 @@ mongoose
     console.log(err);
   });
 
-const __dirname = path.resolve();
-
 const app = express();
-
+const projectRoot = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 

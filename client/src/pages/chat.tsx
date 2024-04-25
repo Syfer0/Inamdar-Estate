@@ -1,10 +1,8 @@
-import io  from 'socket.io-client'
-const socket = io.connect()
+import io from "socket.io-client";
+const socket = io.connect();
 function chat() {
-  const sendMessage = () => {
-  
-  };
-  return 
+  const sendMessage = () => {};
+  return (
     <div>
       <input placeholder="Message..." />
       <button>Send Message</button>
