@@ -1,3 +1,4 @@
+ 
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -9,14 +10,16 @@ import path from "path";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { NextFunction, Request, Response } from "express";
 
+ 
 dotenv.config();
 
 mongoose
   .connect(process.env.MONGO ?? "defaultMongoConnection")
   .then(() => {
-    console.log("Connected to MongoDB!");
+    console.log('Connected to MongoDB!');
   })
-  .catch((err) => {
+  .catch((err: any) => {
+    // Specify the type of 'err'
     console.log(err);
   });
 
@@ -26,27 +29,28 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Define a proxy for the Vite development server
-const viteProxy = createProxyMiddleware("/client", {
-  target: "http://localhost:5173",
+const viteProxy = createProxyMiddleware('/client', {
+  target: 'http://localhost:5173',
   changeOrigin: true,
 });
 app.use(viteProxy);
 
 app.listen(3000, () => {
-  console.log("Server is running on port 3000!");
+  console.log('Server is running on port 3000!');
 });
 
-app.use("/api/user", userRouter);
-app.use("/api/auth", authRouter);
-app.use("/api/listing", listingRouter);
+app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
-// Server the index.html from the Vite development server
-app.use(express.static(path.join(__dirname, "/client/dist")));
+// Serve the index.html from the Vite development server
+app.use(express.static(path.join(__dirname, '/client/dist')));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
+ 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
@@ -56,3 +60,4 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     message,
   });
 });
+ 
