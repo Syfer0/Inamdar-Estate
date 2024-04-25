@@ -1,6 +1,9 @@
-export const errorHandler = (statusCode, message) => {
-  const error = new Error();
+interface HttpError extends Error {
+  statusCode: number;
+}
+
+export const errorHandler = (statusCode: number, message: string) => {
+  const error = new Error(message) as HttpError;
   error.statusCode = statusCode;
-  error.message = message;
   return error;
 };
