@@ -1,0 +1,12 @@
+{
+  "name": "inamdarconstruction",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build:server",
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
