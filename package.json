@@ -2,10 +2,8 @@
   "name": "inamdarconstruction",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "cd client && npm i && npm run build",
-    "build:server": "cd server && npm i && npm run build:server",
-    "start": "node server.js"
+    "build": "npm install && npm install --prefix client && npm run build --prefix client && npm run build:server",
+    "build:server": "cd server && npm install && npm run build:server"
   },
   "dependencies": {},
   "devDependencies": {}
