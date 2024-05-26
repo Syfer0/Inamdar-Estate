@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 // Define a proxy for the Vite development server
 const viteProxy = createProxyMiddleware("/client", {
-  target: "http://localhost:5173",
+  target: "inamdar-estate.vercel.app",
   changeOrigin: true,
 });
 app.use(viteProxy);
