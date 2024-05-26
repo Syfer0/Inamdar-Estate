@@ -6,17 +6,25 @@ import authRouter from "./routes/auth.route";
 import listingRouter from "./routes/listing.route";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
 import { NextFunction, Request, Response } from "express";
 
 dotenv.config();
 
+const mongoUri = process.env.MONGO;
+if (!mongoUri) {
+  throw new Error("MONGO environment variable is not defined");
+}
+
 mongoose
-  .connect(process.env.MONGO as string)
+  .connect(mongoUri)
   .then(() => {
     console.log("Connected to MongoDB!");
   })
   .catch((err) => {
-    console.log(err);
+    console.error("Failed to connect to MongoDB:", err);
   });
 
 const app = express();
@@ -24,6 +32,14 @@ const projectRoot = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
+app.use(helmet());
+app.use(morgan("combined"));
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the API" });
