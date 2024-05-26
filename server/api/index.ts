@@ -11,7 +11,7 @@ import { NextFunction, Request, Response } from "express";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO)
+  .connect(process.env.MONGO as string)
   .then(() => {
     console.log("Connected to MongoDB!");
   })

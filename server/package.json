@@ -1,16 +1,12 @@
 {
-  "name": "mern-estate",
+  "name": "mern-estate-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "tsc",
     "start": "node dist/index.js",
     "dev": "nodemon api/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
