@@ -34,7 +34,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: ["https://inamdar-estate.vercel.app"],
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
