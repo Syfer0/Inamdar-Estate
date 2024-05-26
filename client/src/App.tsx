@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
-import Chat from "./pages/chat";
+// import Chat from "./pages/chat";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
@@ -44,7 +44,7 @@ export default function App() {
 
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
-            <Route path="/chat" element={<Chat />} />
+            {/* <Route path="/chat" element={<Chat />} /> */}
             <Route path="/create-listing" element={<CreateListing />} />
             <Route
               path="/update-listing/:listingId"

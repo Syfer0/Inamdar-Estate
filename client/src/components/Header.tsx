@@ -70,11 +70,11 @@ export default function Header() {
             )}
           </Link>
           <Togglebtn />
-          <Link to="/chat">
+          {/* <Link to="/chat">
             <li className="text-slate-700 hover:underline">
               <IoChatboxEllipses className="h-7 w-7 " />
             </li>
-          </Link>
+          </Link> */}
         </ul>
       </div>
     </header>
