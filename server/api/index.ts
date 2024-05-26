@@ -21,23 +21,29 @@ mongoose
 
 const app = express();
 const projectRoot = path.resolve();
+
 app.use(express.json());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the API" });
+});
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
-app.use(express.static(path.join(__dirname, "client", "dist")));
+const staticPath = path.join(projectRoot, "client", "dist");
+app.use(express.static(staticPath));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(staticPath, "index.html"));
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
-  return res.status(statusCode).json({
+  res.status(statusCode).json({
     success: false,
     statusCode,
     message,
