@@ -1,10 +1,19 @@
 {
   "version": 2,
-  "builds": [{ "src": "*.js", "use": "@vercel/node" }],
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "inamdar-estate-mc8t.vercel.app/api/$1"
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
