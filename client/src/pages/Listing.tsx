@@ -46,12 +46,14 @@ export default function Listing() {
   const [contact, setContact] = useState<boolean>(false);
   const params = useParams<Params>();
   const currentUser = useSelector((state: RootState) => state.user.currentUser); // Access currentUser directly from state.user
-
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/listing/get/${params.listingId}`);
+        const res = await fetch(
+          `${API_URL}/api/listing/get/${params.listingId}`
+        );
         const data = await res.json();
         if (data.success === false) {
           setError(true);
