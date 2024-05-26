@@ -12,7 +12,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://inamdar-estate.vercel.app/api/$1"
+      "destination": "inamdar-estate-mc8t.vercel.app"
     }
   ]
 }
